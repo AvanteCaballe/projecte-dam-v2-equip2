@@ -1,5 +1,6 @@
 package com.example.application.views.list;
 
+import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
@@ -10,9 +11,8 @@ import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 
 @PWA(name = "Flow CRM Tutorial", shortName = "Flow CRM Tutorial", enableInstallPrompt = false)
-@Theme(themeFolder = "flowcrmtutorial")
-@PageTitle("list")
-@Route(value = "")
+@Route(value = "", layout = MainLayout.class)
+@PageTitle("Contacts | Vaadin CRM")
 public class ListView extends VerticalLayout {
 
     public ListView() {
