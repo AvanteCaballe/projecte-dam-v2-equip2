@@ -25,7 +25,7 @@ public class HistoriesImatge extends VerticalLayout {
     public HistoriesImatge() {
         setSpacing(false);
 
-        Image img =new Image("https://i.pinimg.com/1200x/98/5d/60/985d60b311111aabe29bb6a75c6175ca.jpg", "DummyImage");
+        Image img =new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "DummyImage");
         img.addClickListener(e -> System.out.println("pito"));
         img.setWidth("75%");
         img.setHeight("75%");
@@ -33,12 +33,27 @@ public class HistoriesImatge extends VerticalLayout {
         setSizeFull();
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
-        Imatge pito = new Imatge();
-        pito.setTitle("si");
-        pito.setAuthor("santi");
-        pito.setTheme("terror");
+        Imatge test = new Imatge();
+        test.setTitle("Señor de los anillos");
+        test.setAuthor("Tolkien");
+        test.setTheme("Fantasia");
 
-        grid.setItems(pito);
+        Imatge prova = new Imatge();
+        prova.setTitle("Harry Potter");
+        prova.setAuthor("Marc Avante");
+        prova.setTheme("Magia");
+
+        Imatge testing = new Imatge();
+        testing.setTitle("50 sombras de Gray");
+        testing.setAuthor("Axel Tomàs");
+        testing.setTheme("Amor");
+
+        Imatge proving = new Imatge();
+        proving.setTitle("Arcane");
+        proving.setAuthor("Jhon Deiby");
+        proving.setTheme("Ficció");
+
+        grid.setItems(test, prova, testing, proving);
 
         grid.addClassNames("contact-grid");
         grid.setSizeFull();
