@@ -18,8 +18,6 @@ import com.example.application.views.MainLayout;
 @PageTitle("Pi Story")
 public class ListView extends VerticalLayout {
 
-    private Integer contador = 1;
-
     public ListView() {
         setSpacing(false);
 
@@ -34,12 +32,11 @@ public class ListView extends VerticalLayout {
 
 //        Image img = MainLayout.eiemgis.get(contador).getSrc();
         Image img = new Image("https://i.pinimg.com/1200x/98/5d/60/985d60b311111aabe29bb6a75c6175ca.jpg", "pito");
-
-        System.out.println(img);
+        Imatge test = new Imatge(3,"La cosa","Yo","Terror",img);
 
         img.addClickListener(e -> {
 //            UI.getCurrent().navigate("ola/" + MainLayout.eiemgis.get(contador).getIdImg());
-            UI.getCurrent().navigate("ola");
+            UI.getCurrent().navigate("image/"+test.getIdImg());
         });
         img.setWidth("75%");
         img.setHeight("75%");
