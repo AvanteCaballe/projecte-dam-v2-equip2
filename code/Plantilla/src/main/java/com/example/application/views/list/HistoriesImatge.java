@@ -2,17 +2,19 @@ package com.example.application.views.list;
 
 import com.example.application.data.entity.Imatge;
 import com.example.application.views.MainLayout;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.*;
 
-@Route(value = "/ola", layout = MainLayout.class)
+@Route(value = "image/:imageID", layout = MainLayout.class)
 @PageTitle("Histories")
-public class HistoriesImatge extends VerticalLayout {
+public class HistoriesImatge extends VerticalLayout implements BeforeEnterObserver {
 
     Grid<Imatge> grid = new Grid<>(Imatge.class);
+    private Integer imageID;
 
     public HistoriesImatge() {
         setSpacing(false);
@@ -32,5 +34,12 @@ public class HistoriesImatge extends VerticalLayout {
         add(grid);
     }
 
+
+
+
+    @Override
+    public void beforeEnter(BeforeEnterEvent event) {
+        imageID = Integer.valueOf(event.getRouteParameters().get("imageID").get());
+    }
 
 }
