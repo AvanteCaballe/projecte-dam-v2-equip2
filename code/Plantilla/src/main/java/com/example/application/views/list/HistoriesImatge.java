@@ -35,8 +35,6 @@ public class HistoriesImatge extends VerticalLayout implements BeforeEnterObserv
     }
 
 
-
-
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
         imageID = Integer.valueOf(event.getRouteParameters().get("imageID").get());
