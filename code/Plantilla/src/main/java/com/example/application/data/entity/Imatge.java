@@ -1,16 +1,16 @@
 package com.example.application.data.entity;
 
 import com.example.application.data.AbstractEntity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vaadin.flow.component.html.Image;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Imatge extends AbstractEntity{
+
+    @NotEmpty
+    private int id;
 
     @NotEmpty
     private String title = "";
@@ -23,7 +23,8 @@ public class Imatge extends AbstractEntity{
 
     private Image src;
 
-    public Imatge(String title, String author, String theme, Image src) {
+    public Imatge(int id, String title, String author, String theme, Image src) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.theme = theme;
@@ -32,6 +33,15 @@ public class Imatge extends AbstractEntity{
 
     public Imatge() {
 
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Image getSrc() {

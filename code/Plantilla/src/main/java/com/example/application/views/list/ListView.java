@@ -7,6 +7,7 @@ import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
@@ -28,73 +29,42 @@ public class ListView extends VerticalLayout {
     @Autowired
     public ListView(Service servei) {
         setSpacing(false);
-        Button leftButton = new Button("Left", new Icon(VaadinIcon.ARROW_LEFT));
-        add(leftButton);
 
-        Button rightButton = new Button("Right",
-                new Icon(VaadinIcon.ARROW_RIGHT));
-                rightButton.setIconAfterText(true);
-                rightButton.addClickListener(this::showButtonClickedMessage);
-        add(rightButton);
-
-//        Image img = MainLayout.eiemgis.get(contador).getSrc();
-        URL imageUrl = this.getClass().getResource("/home/alumne/Imatges/Selecció_068.png");
-        Image img = new Image(String.valueOf(imageUrl), "a");
-        Imatge test = new Imatge("La cosa","Yo","Terror",null);
+        Image img = new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "a");
+        Imatge test = new Imatge(1,"La cosa","Yo","Terror",img);
 //        servei.saveImatge(test);
 
         img.addClickListener(e -> {
             UI.getCurrent().navigate("image/"+test.getId());
         });
-        img.setWidth("75%");
-        img.setHeight("75%");
-        add(img);
 
-        setSizeFull();
-//        setJustifyContentMode(JustifyContentMode.CENTER);
+        setJustifyContentMode(JustifyContentMode.CENTER);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-//        getStyle().set("text-align", "center");
+        getStyle().set("text-align", "center");
 
         // image carousel
-        Slide s1 = new Slide(createSlideContent("Slide 1", "green"));
-        Slide s2 = new Slide(createSlideContent("Slide 2", "blue"));
-        Slide s3 = new Slide(createSlideContent("Slide 3", "red"));
-        Slide s4 = new Slide(createSlideContent("Slide 4", "yellow"));
+        Slide s1 = new Slide(img);
+        Slide s2 = new Slide(new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "DummyImage"));
+        Slide s3 = new Slide(new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "DummyImage"));
+        Slide s4 = new Slide(new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "DummyImage"));
 
         final Carousel cf = new Carousel(s1, s2, s3, s4).withoutNavigation();
         cf.setWidth("100%");
-        cf.setHeight("180px");
-        Button next = new Button(">>");
-        Button prev = new Button("<<");
-        Button last = new Button(">|");
-        Button first = new Button("|<");
+        cf.setMaxHeight("90%");
+        Button next = new Button(new Icon(VaadinIcon.ARROW_RIGHT));
+        Button prev = new Button(new Icon(VaadinIcon.ARROW_LEFT));
+        next.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        prev.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+
         next.addClickListener(e -> cf.moveNext());
         prev.addClickListener(e -> cf.movePrev());
-        last.addClickListener(e -> cf.movePos(3));
-        first.addClickListener(e -> cf.movePos(0));
 
         cf.addChangeListener(e -> Notification.show("Slide Changed!", 1000, Notification.Position.BOTTOM_START));
-        HorizontalLayout btns = new HorizontalLayout(first, prev, next, last);
+        HorizontalLayout btns = new HorizontalLayout(prev, next);
         btns.setAlignItems(Alignment.CENTER);
         btns.setJustifyContentMode(JustifyContentMode.CENTER);
         btns.setWidthFull();
         add(cf, btns);
 
     }
-
-    private Component createSlideContent(String string, String color) {
-        H1 label = new H1(string);
-        label.getStyle().set("margin-top", "auto");
-        label.getStyle().set("margin-bottom", "auto");
-        VerticalLayout d = new VerticalLayout(label);
-        d.setAlignItems(Alignment.CENTER);
-        d.setSizeFull();
-        d.getStyle().set("background-color", color);
-        return d;
-    }
-
-    private void showButtonClickedMessage(ClickEvent<Button> buttonClickEvent) {
-//        img = new Image("https://i.pinimg.com/1200x/98/5d/60/985d60b311111aabe29bb6a75c6175ca.jpg", "DummyImage");
-    }
-
 }
