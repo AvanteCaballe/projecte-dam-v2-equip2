@@ -1,6 +1,7 @@
 package com.example.application.views;
 
 import com.example.application.data.entity.Imatge;
+import com.example.application.data.repositories.ImatgeRepository;
 import com.example.application.views.list.HistoriesImatge;
 import com.example.application.views.list.ListView;
 import com.vaadin.flow.component.UI;
@@ -8,14 +9,26 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Page;
+import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
+import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
 import com.vaadin.flow.theme.Theme;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Theme(themeFolder = "flowcrmtutorial")
 public class MainLayout extends AppLayout {
 
+    private Upload upload;
+    private Imatge imatge;
+    ImatgeRepository imatgeRepository;
+    private VerticalLayout imageContainer;
     public static List<Imatge> eiemgis ;
 
     public MainLayout() {
@@ -47,4 +60,6 @@ public class MainLayout extends AppLayout {
     public void setEiemgis(List<Imatge> eiemgis) {
         this.eiemgis = eiemgis;
     }
+
+
 }

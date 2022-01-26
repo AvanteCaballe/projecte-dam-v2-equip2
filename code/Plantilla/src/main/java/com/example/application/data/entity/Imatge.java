@@ -1,13 +1,20 @@
 package com.example.application.data.entity;
 
 import com.example.application.data.AbstractEntity;
+import com.example.application.data.repositories.ImatgeRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.server.StreamResource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 @Entity
 public class Imatge extends AbstractEntity{
@@ -21,24 +28,32 @@ public class Imatge extends AbstractEntity{
     @NotEmpty
     private String theme = "";
 
-    private Image src;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] src;
 
-    public Imatge(String title, String author, String theme, Image src) {
+    public Imatge(String title, String author, String theme) {
         this.title = title;
         this.author = author;
         this.theme = theme;
-        this.src = src;
     }
 
     public Imatge() {
 
     }
 
-    public Image getSrc() {
+
+
+    public static byte[] getBytesFromFile(String imagePath) throws IOException {
+        File file = new File(imagePath);
+        return Files.readAllBytes(file.toPath());
+    }
+
+    public byte[] getSrc() {
         return src;
     }
 
-    public void setSrc(Image src) {
+    public void setSrc(byte[] src) {
         this.src = src;
     }
 
