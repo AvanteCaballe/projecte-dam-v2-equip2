@@ -1,16 +1,23 @@
 package com.example.application.data.entity;
 
 import com.example.application.data.AbstractEntity;
+import com.example.application.data.repositories.ImatgeRepository;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.server.StreamResource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 @Entity
 public class Imatge extends AbstractEntity{
-
-    @NotEmpty
-    private int id;
 
     @NotEmpty
     private String title = "";
@@ -21,35 +28,32 @@ public class Imatge extends AbstractEntity{
     @NotEmpty
     private String theme = "";
 
-    private Image src;
+    @NotEmpty
+    private byte[] imatge;
 
-    public Imatge(int id, String title, String author, String theme, Image src) {
-        this.id = id;
+    public Imatge(String title, String author, String theme) {
         this.title = title;
         this.author = author;
         this.theme = theme;
-        this.src = src;
     }
 
     public Imatge() {
 
     }
 
-    @Override
-    public Integer getId() {
-        return id;
+
+
+    public static byte[] getBytesFromFile(String imagePath) throws IOException {
+        File file = new File(imagePath);
+        return Files.readAllBytes(file.toPath());
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public byte[] getSrc() {
+        return imatge;
     }
 
-    public Image getSrc() {
-        return src;
-    }
-
-    public void setSrc(Image src) {
-        this.src = src;
+    public void setSrc(byte[] src) {
+        this.imatge = src;
     }
 
     public String getTitle() {
@@ -76,5 +80,3 @@ public class Imatge extends AbstractEntity{
         this.theme = theme;
     }
 }
-
-

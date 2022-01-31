@@ -2,6 +2,7 @@ package com.example.application.views.list;
 
 import com.example.application.data.Services.Service;
 import com.example.application.data.entity.Imatge;
+import com.example.application.data.repositories.ImatgeRepository;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
@@ -26,16 +27,21 @@ import java.net.URL;
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Pi Story")
 public class ListView extends VerticalLayout {
+
+    Service service;
+
     @Autowired
     public ListView(Service servei) {
+        this.service = servei;
+
         setSpacing(false);
 
         Image img = new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "a");
-        Imatge test = new Imatge(1,"La cosa","Yo","Terror",img);
+        Imatge test = new Imatge("La cosa","Yo","Terror");
 //        servei.saveImatge(test);
 
         img.addClickListener(e -> {
-            UI.getCurrent().navigate("image/"+test.getId());
+            UI.getCurrent().navigate("image/"+ 1);
         });
 
         setJustifyContentMode(JustifyContentMode.CENTER);
@@ -59,7 +65,6 @@ public class ListView extends VerticalLayout {
         next.addClickListener(e -> cf.moveNext());
         prev.addClickListener(e -> cf.movePrev());
 
-        cf.addChangeListener(e -> Notification.show("Slide Changed!", 1000, Notification.Position.BOTTOM_START));
         HorizontalLayout btns = new HorizontalLayout(prev, next);
         btns.setAlignItems(Alignment.CENTER);
         btns.setJustifyContentMode(JustifyContentMode.CENTER);

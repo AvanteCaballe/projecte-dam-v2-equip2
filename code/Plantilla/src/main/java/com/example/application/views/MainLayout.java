@@ -5,8 +5,12 @@ import com.example.application.views.list.HistoriesImatge;
 import com.example.application.views.list.ListView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.theme.Theme;
@@ -37,6 +41,15 @@ public class MainLayout extends AppLayout {
         logo.addClickListener(e->{
             UI.getCurrent().navigate(ListView.class);
 //            add(new ListView());
+        });
+
+        Button add = new Button("Add",new Icon(VaadinIcon.PLUS_CIRCLE));
+        add.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        add.setWidth("15%");
+        addToNavbar(add);
+
+        add.addClickListener(e -> {
+            UI.getCurrent().navigate("uploadImatge");
         });
     }
 
