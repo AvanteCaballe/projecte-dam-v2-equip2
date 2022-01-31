@@ -1,14 +1,11 @@
 package com.example.application.data.entity;
 
 import com.example.application.data.AbstractEntity;
-import com.example.application.data.repositories.ImatgeRepository;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.StreamResource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.ByteArrayInputStream;
@@ -28,8 +25,9 @@ public class Imatge extends AbstractEntity{
     @NotEmpty
     private String theme = "";
 
-    @NotEmpty
-    private byte[] imatge;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] src;
 
     public Imatge(String title, String author, String theme) {
         this.title = title;
@@ -41,19 +39,17 @@ public class Imatge extends AbstractEntity{
 
     }
 
-
-
     public static byte[] getBytesFromFile(String imagePath) throws IOException {
         File file = new File(imagePath);
         return Files.readAllBytes(file.toPath());
     }
 
     public byte[] getSrc() {
-        return imatge;
+        return src;
     }
 
     public void setSrc(byte[] src) {
-        this.imatge = src;
+        this.src = src;
     }
 
     public String getTitle() {
