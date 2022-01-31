@@ -41,7 +41,7 @@ public class UploadView extends VerticalLayout {
     TextField filterText = new TextField();
     UploadForm form = new UploadForm();
 
-    Imatge imatge = new Imatge();
+    Imatge imatge = new Imatge("La cosa", "Yo", "Terror");
 
     @Autowired
     ImatgeRepository imatgeRepository;
@@ -49,7 +49,7 @@ public class UploadView extends VerticalLayout {
     @Autowired
     Service service;
 
-    private VerticalLayout imageContainer;
+    private VerticalLayout imageContainer = new VerticalLayout();
 
     MemoryBuffer buffer = new MemoryBuffer();
     Upload upload = new Upload(buffer);
@@ -57,7 +57,6 @@ public class UploadView extends VerticalLayout {
 
     public UploadView(Service service) {
         addClassName("list-view");
-        setSizeFull();
         initUploaderImage();
     }
 
@@ -88,11 +87,12 @@ public class UploadView extends VerticalLayout {
 
     private void saveProfilePicture(byte[] imageBytes) {
         imatge.setSrc(imageBytes);
-        service.saveImatge(imatge);
+        //service.saveImatge(imatge);
     }
 
     private void showImage() {
-        Image image = generateImage(imatge);
+        byte[] array = imatge.getSrc();
+        Image image = generateImage(array);
         image.setHeight("100%");
         imageContainer.removeAll();
         imageContainer.add(image);
@@ -102,7 +102,7 @@ public class UploadView extends VerticalLayout {
     private void initUploaderImage() {
         MemoryBuffer buffer = new MemoryBuffer();
         upload = new Upload(buffer);
-        upload.setAcceptedFileTypes("image/jpeg","image/jpg", "image/png", "image/gif");
+        upload.setAcceptedFileTypes("image/jpeg", "image/jpg", "image/png", "image/gif");
         upload.addSucceededListener(event -> {
             try {
                 // The image can be jpg png or gif, but we store it always as png file in this example
@@ -115,17 +115,15 @@ public class UploadView extends VerticalLayout {
                 e.printStackTrace();
             }
         });
-        add(upload, getContent());
+        add(getContent(), imageContainer, upload);
     }
 
-    public Image generateImage(Imatge imatge) {
-        int id = imatge.getId();
-        StreamResource sr = new StreamResource("user", () ->  {
-            Imatge attached = imatgeRepository.findWithPropertyPictureAttachedById(id);
-            return new ByteArrayInputStream(attached.getSrc());
+    public Image generateImage(byte[] array) {
+        StreamResource sr = new StreamResource("imatge", () -> {
+            return new ByteArrayInputStream(array);
         });
         sr.setContentType("image/png");
-        Image image = new Image(sr, "profile-picture");
+        Image image = new Image(sr, "src");
         return image;
     }
 
