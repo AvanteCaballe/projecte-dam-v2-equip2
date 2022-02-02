@@ -62,7 +62,6 @@ public class UploadView extends VerticalLayout {
 
     private Component getContent() {
         HorizontalLayout content = new HorizontalLayout(form);
-//        content.setFlexGrow(2, grid);
         content.setFlexGrow(1, form);
         content.addClassNames("content");
         content.setSizeFull();
@@ -81,6 +80,7 @@ public class UploadView extends VerticalLayout {
         });
         upload.getElement().addEventListener("file-remove", event -> {
             output.removeAll();
+            imageContainer.removeAll();
         });
         return content;
     }
