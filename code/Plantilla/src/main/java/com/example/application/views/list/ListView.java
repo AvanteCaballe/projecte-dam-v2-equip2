@@ -16,26 +16,31 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.router.*;
 import com.vaadin.flow.server.PWA;
 import com.example.application.views.MainLayout;
+import com.vaadin.flow.server.StreamResource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URL;
 
 @PWA(name = "Flow CRM Tutorial", shortName = "Flow CRM Tutorial", enableInstallPrompt = false)
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Pi Story")
 public class ListView extends VerticalLayout {
-
     Service service;
-
     @Autowired
     public ListView(Service servei) {
         this.service = servei;
 
         setSpacing(false);
-
         Image img = new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "a");
         Imatge test = new Imatge("La cosa","Yo","Terror");
 //        servei.saveImatge(test);

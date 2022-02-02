@@ -38,7 +38,6 @@ public class Imatge extends AbstractEntity{
     public Imatge() {
 
     }
-
     public static byte[] getBytesFromFile(String imagePath) throws IOException {
         File file = new File(imagePath);
         return Files.readAllBytes(file.toPath());
