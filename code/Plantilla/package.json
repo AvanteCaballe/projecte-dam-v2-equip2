@@ -65,6 +65,7 @@
     "@vaadin/vaadin-usage-statistics": "2.1.0",
     "@webcomponents/shadycss": "1.8.0",
     "@webcomponents/webcomponentsjs": "^2.2.10",
+    "@xpertsea/paper-slider": "3.0.0",
     "construct-style-sheets-polyfill": "3.0.4",
     "line-awesome": "1.3.0",
     "lit-element": "2.5.1",
@@ -156,6 +157,7 @@
       "@vaadin/vaadin-usage-statistics": "2.1.0",
       "@webcomponents/shadycss": "1.8.0",
       "@webcomponents/webcomponentsjs": "^2.2.10",
+      "@xpertsea/paper-slider": "3.0.0",
       "construct-style-sheets-polyfill": "3.0.4",
       "line-awesome": "1.3.0",
       "lit-element": "2.5.1",
@@ -182,6 +184,6 @@
       "webpack-dev-server": "3.11.0",
       "webpack-merge": "4.2.2"
     },
-    "hash": "ad188fdf5be42dcf30128a2287d896cb02d84a752e4e963b88402f23b37800ca"
+    "hash": "3bc7ae85b9bf53fe4d0242397a8b2ab33f352257ed8b5407338fe5b7b477f320"
   }
 }

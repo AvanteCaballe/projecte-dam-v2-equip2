@@ -1,14 +1,11 @@
 package com.example.application.data.entity;
 
 import com.example.application.data.AbstractEntity;
-import com.example.application.data.repositories.ImatgeRepository;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.StreamResource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.ByteArrayInputStream;
@@ -41,9 +38,6 @@ public class Imatge extends AbstractEntity{
     public Imatge() {
 
     }
-
-
-
     public static byte[] getBytesFromFile(String imagePath) throws IOException {
         File file = new File(imagePath);
         return Files.readAllBytes(file.toPath());
@@ -81,5 +75,3 @@ public class Imatge extends AbstractEntity{
         this.theme = theme;
     }
 }
-
-
