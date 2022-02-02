@@ -35,19 +35,11 @@ import java.net.URL;
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Pi Story")
 public class ListView extends VerticalLayout {
-    Service service;
     @Autowired
     public ListView(Service servei) {
         this.service = servei;
 
         setSpacing(false);
-        Image img = new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "a");
-        Imatge test = new Imatge("La cosa","Yo","Terror");
-//        servei.saveImatge(test);
-
-        img.addClickListener(e -> {
-            UI.getCurrent().navigate("image/"+ 1);
-        });
 
         setJustifyContentMode(JustifyContentMode.CENTER);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
@@ -67,14 +59,5 @@ public class ListView extends VerticalLayout {
         next.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         prev.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
 
-        next.addClickListener(e -> cf.moveNext());
-        prev.addClickListener(e -> cf.movePrev());
 
-        HorizontalLayout btns = new HorizontalLayout(prev, next);
-        btns.setAlignItems(Alignment.CENTER);
-        btns.setJustifyContentMode(JustifyContentMode.CENTER);
-        btns.setWidthFull();
-        add(cf, btns);
-
-    }
 }
