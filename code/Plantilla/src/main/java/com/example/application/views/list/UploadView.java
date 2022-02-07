@@ -56,7 +56,6 @@ public class UploadView extends VerticalLayout {
     Div output = new Div();
 
     public UploadView(Service service) {
-        addClassName("list-view");
         initUploaderImage();
         form.save.addClickListener(event -> {
             imatge.setAuthor(form.author.getValue());
@@ -131,21 +130,6 @@ public class UploadView extends VerticalLayout {
         Image image = new Image(sr, "src");
         return image;
     }
-
-
-    private HorizontalLayout getToolbar() {
-        filterText.setPlaceholder("Filter by name...");
-        filterText.setClearButtonVisible(true);
-        filterText.setValueChangeMode(ValueChangeMode.LAZY);
-//        filterText.addValueChangeListener(e -> updateList());
-
-        Button addContactButton = new Button("Add contact");
-
-        HorizontalLayout toolbar = new HorizontalLayout(filterText, addContactButton);
-        toolbar.addClassName("toolbar");
-        return toolbar;
-    }
-
 
     private Component createComponent(String mimeType, String fileName,
                                       InputStream stream) {
