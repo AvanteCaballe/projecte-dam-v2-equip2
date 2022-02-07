@@ -7,6 +7,7 @@ import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
@@ -54,6 +55,8 @@ public class ListView extends VerticalLayout {
         getStyle().set("text-align", "center");
 
         // image carousel
+        img.setHeight(590, Unit.PIXELS);
+        img.setWidth(1555, Unit.PIXELS);
         Slide s1 = new Slide(img);
         Slide s2 = new Slide(new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "DummyImage"));
         Slide s3 = new Slide(new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "DummyImage"));
