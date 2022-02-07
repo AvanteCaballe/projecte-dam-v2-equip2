@@ -1,27 +1,27 @@
 package com.example.application.views.list;
 
+import com.example.application.data.Services.Service;
+import com.example.application.data.entity.Imatge;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 
-import java.util.List;
-
 public class UploadForm extends FormLayout {
-    TextField firstName = new TextField("Title");
-    TextField lastName = new TextField("Author");
-    EmailField email = new EmailField("Theme");
+    TextField title = new TextField("Title");
+    TextField author = new TextField("Author");
+    TextField theme = new TextField("Theme");
+    Service service;
 
+    Imatge imatge = new Imatge();
 
     Button save = new Button("Save");
     Button close = new Button("Cancel");
 
     public UploadForm() {
-        add(firstName, lastName, email, createButtonsLayout());
+        add(title, author, theme, createButtonsLayout());
     }
 
     private HorizontalLayout createButtonsLayout() {

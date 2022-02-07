@@ -41,7 +41,7 @@ public class UploadView extends VerticalLayout {
     TextField filterText = new TextField();
     UploadForm form = new UploadForm();
 
-    Imatge imatge = new Imatge("La cosa", "Yo", "Terror");
+    Imatge imatge = new Imatge();
 
     @Autowired
     ImatgeRepository imatgeRepository;
@@ -58,6 +58,12 @@ public class UploadView extends VerticalLayout {
     public UploadView(Service service) {
         addClassName("list-view");
         initUploaderImage();
+        form.save.addClickListener(event -> {
+            imatge.setAuthor(form.author.getValue());
+            imatge.setTitle(form.title.getValue());
+            imatge.setTheme(form.theme.getValue());
+            service.saveImatge(imatge);
+        });
     }
 
     private Component getContent() {
@@ -87,7 +93,6 @@ public class UploadView extends VerticalLayout {
 
     private void saveProfilePicture(byte[] imageBytes) {
         imatge.setSrc(imageBytes);
-        //service.saveImatge(imatge);
     }
 
     private void showImage() {
