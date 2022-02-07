@@ -47,7 +47,7 @@ public class MainLayout extends AppLayout {
         logo.addClassNames("text-l", "m-m");
 
         HorizontalLayout header = new HorizontalLayout(logo);
-        header.setWidth("100%");
+        header.setWidth("80%");
         header.addClassNames("py-0", "px-m");
         addToNavbar(header);
 
@@ -58,12 +58,22 @@ public class MainLayout extends AppLayout {
 
         Button add = new Button("Add",new Icon(VaadinIcon.PLUS_CIRCLE));
         add.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
-        add.setWidth("15%");
+        add.setWidth("10%");
         addToNavbar(add);
 
         add.addClickListener(e -> {
             UI.getCurrent().navigate("uploadImatge");
         });
+
+        Button login =new Button("Login", new Icon(VaadinIcon.USER));
+        login.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        login.setWidth("10%");
+
+        login.addClickListener(e -> {
+            UI.getCurrent().navigate("login");
+        });
+
+        addToNavbar(login);
     }
 
     public List<Imatge> getEiemgis() {
