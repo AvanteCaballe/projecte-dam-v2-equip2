@@ -33,7 +33,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         img.setHeight(112, Unit.PIXELS);
         img.setWidth(212, Unit.PIXELS);
 
-        add(img,login);
+        add(img);
         add(login);
     }
 
