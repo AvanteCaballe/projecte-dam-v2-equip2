@@ -1,5 +1,6 @@
 package com.example.application.views.list;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
@@ -24,13 +25,16 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
         login.setAction("login");
 
-        Image img = new Image("https://png.pngtree.com/element_our/md/20180626/md_5b321fcda2483.jpg", "a");
+        Image img = new Image("https://i.ibb.co/52282JQ/Pi-Story-Cheek.png", "a");
+        img.addClickListener(imageClickEvent -> {
+            UI.getCurrent().navigate(ListView.class);
+        });
 
-        img.setHeight(50, Unit.PIXELS);
-        img.setWidth(55, Unit.PIXELS);
+        img.setHeight(112, Unit.PIXELS);
+        img.setWidth(212, Unit.PIXELS);
 
         add(img,login);
-        add(new H1("Pi Story"), login);
+        add(login);
     }
 
     @Override
