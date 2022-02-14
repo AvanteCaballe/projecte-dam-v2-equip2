@@ -20,7 +20,6 @@ public class HistoriesImatge extends VerticalLayout implements BeforeEnterObserv
         setSpacing(false);
 
         Image img =new Image("https://i.blogs.es/949bb7/lotramazon/1366_2000.jpeg", "DummyImage");
-        img.addClickListener(e -> System.out.println("pito"));
         img.setWidth("75%");
         img.setHeight("75%");
         add(img);

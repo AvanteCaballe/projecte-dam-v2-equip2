@@ -5,6 +5,7 @@ import com.example.application.data.repositories.ImatgeRepository;
 import com.example.application.views.list.HistoriesImatge;
 import com.example.application.views.list.ListView;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -43,26 +44,42 @@ public class MainLayout extends AppLayout {
     }
 
     private void createHeader() {
-        H1 logo = new H1("PiStory");
+        H1 logo = new H1("");
         logo.addClassNames("text-l", "m-m");
 
+        Image logo1 = new Image("https://i.ibb.co/52282JQ/Pi-Story-Cheek.png", "a");
+        logo1.setHeight(56, Unit.PIXELS);
+        logo1.setWidth(106, Unit.PIXELS);
+        logo1.addClickListener(e->{
+            UI.getCurrent().navigate(ListView.class);
+        });
+        addToNavbar(logo1);
+
         HorizontalLayout header = new HorizontalLayout(logo);
-        header.setWidth("100%");
+        header.setWidth("80%");
         header.addClassNames("py-0", "px-m");
         addToNavbar(header);
 
         logo.addClickListener(e->{
             UI.getCurrent().navigate(ListView.class);
-//            add(new ListView());
         });
 
         Button add = new Button("Add",new Icon(VaadinIcon.PLUS_CIRCLE));
         add.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
-        add.setWidth("15%");
+        add.setWidth("10%");
         addToNavbar(add);
 
         add.addClickListener(e -> {
             UI.getCurrent().navigate("uploadImatge");
+        });
+
+        Button login =new Button("Login", new Icon(VaadinIcon.USER));
+        login.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        login.setWidth("10%");
+        addToNavbar(login);
+
+        login.addClickListener(e -> {
+            UI.getCurrent().navigate("login");
         });
     }
 
