@@ -2,6 +2,7 @@ package com.example.application.views.list;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.Unit;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.login.LoginForm;
@@ -15,7 +16,10 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Login | Vaadin CRM")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
-    private final LoginForm login = new LoginForm();
+    LoginForm login = new LoginForm();
+    //LoginForm.form f=login.getForm();
+
+    Button newUser = new Button("Crea un nou usuari");
 
     public LoginView(){
         addClassName("login-view");
@@ -30,11 +34,15 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
             UI.getCurrent().navigate(ListView.class);
         });
 
+        newUser.addClickListener(newUser -> {
+            UI.getCurrent().navigate(RegisterView.class);
+        });
+
         img.setHeight(112, Unit.PIXELS);
         img.setWidth(212, Unit.PIXELS);
+       // login.setForgotPasswordButtonVisible("Crear usuari");
 
-        add(img);
-        add(login);
+        add(img, login, newUser);
     }
 
     @Override

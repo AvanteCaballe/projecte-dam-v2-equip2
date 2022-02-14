@@ -16,5 +16,5 @@ public interface ImatgeRepository extends JpaRepository<Imatge, Integer> {
     List<Imatge> search(@Param("searchTerm") String searchTerm);
 
     @EntityGraph(attributePaths={"profilePicture"})
-    Imatge findWithPropertyPictureAttachedById(Integer id);
+    Imatge findWithPropertyPictureAttachedById(Long id);
 }
