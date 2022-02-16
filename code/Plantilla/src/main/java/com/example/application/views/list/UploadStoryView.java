@@ -1,6 +1,7 @@
 package com.example.application.views.list;
 
 import com.example.application.data.Services.Service;
+import com.example.application.data.entity.Historia;
 import com.example.application.data.entity.Imatge;
 import com.example.application.data.repositories.ImatgeRepository;
 import com.example.application.views.MainLayout;
@@ -23,22 +24,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 
-@Route(value = "uploadImatge", layout = MainLayout.class)
-@PageTitle("Upload Images")
-public class UploadView extends VerticalLayout {
+@Route(value = "uploadStory", layout = MainLayout.class)
+@PageTitle("Upload Stories")
+public class UploadStoryView extends VerticalLayout {
     TextField filterText = new TextField();
-    UploadForm form = new UploadForm();
+    UploadStoryForm form = new UploadStoryForm();
 
     Imatge imatge = new Imatge();
+    Historia story = new Historia();
 
     @Autowired
     ImatgeRepository imatgeRepository;
@@ -52,13 +52,12 @@ public class UploadView extends VerticalLayout {
     Upload upload = new Upload(buffer);
     Div output = new Div();
 
-    public UploadView(Service service) {
+    public UploadStoryView(Service service) {
         initUploaderImage();
         form.save.addClickListener(event -> {
             imatge.setAuthor(form.author.getValue());
             imatge.setTitle(form.title.getValue());
             imatge.setTheme(form.theme.getValue());
-            service.saveImatge(imatge);
         });
     }
 
@@ -87,41 +86,21 @@ public class UploadView extends VerticalLayout {
         return content;
     }
 
-    private void saveProfilePicture(byte[] imageBytes) {
-        imatge.setSrc(imageBytes);
-    }
-
     private void showImage() {
-        byte[] array = imatge.getSrc();
-        Image image = generateImage(array);
+        Image image = generateImage(imatge);
         image.setHeight("100%");
         imageContainer.removeAll();
         imageContainer.add(image);
     }
-
-
     private void initUploaderImage() {
-        MemoryBuffer buffer = new MemoryBuffer();
-        upload = new Upload(buffer);
-        upload.setAcceptedFileTypes("image/jpeg", "image/jpg", "image/png", "image/gif");
-        upload.addSucceededListener(event -> {
-            try {
-                // The image can be jpg png or gif, but we store it always as png file in this example
-                BufferedImage inputImage = ImageIO.read(buffer.getInputStream());
-                ByteArrayOutputStream pngContent = new ByteArrayOutputStream();
-                ImageIO.write(inputImage, "png", pngContent);
-                saveProfilePicture(pngContent.toByteArray());
-                showImage();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        add(getContent(), imageContainer, upload);
+        showImage();
+        add(getContent());
     }
-
-    public Image generateImage(byte[] array) {
+    public Image generateImage(Imatge imatge) {
+        Long id = imatge.getId();
         StreamResource sr = new StreamResource("imatge", () -> {
-            return new ByteArrayInputStream(array);
+            Imatge attached = imatgeRepository.findWithPropertyPictureAttachedById(id);
+            return new ByteArrayInputStream(attached.getSrc());
         });
         sr.setContentType("image/png");
         Image image = new Image(sr, "src");

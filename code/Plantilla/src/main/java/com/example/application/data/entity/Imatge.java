@@ -1,14 +1,9 @@
 package com.example.application.data.entity;
 
 import com.example.application.data.AbstractEntity;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.server.StreamResource;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
